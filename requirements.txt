@@ -1,0 +1,4 @@
+# Add Python dependencies for development here
+
+dbt-bigquery==1.5.1 #dbt-core is a dependency
+dbt-core==1.5.1

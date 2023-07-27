@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: supermarket
+    database: joon-sandbox
+    schema: dbt_nguyendnb
+    tables:
+      - name: supermarket_sales

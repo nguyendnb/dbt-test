@@ -1,0 +1,11 @@
+dbt_test:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: joon-sandbox
+      dataset: dbt_nguyendnb
+      threads: 8
+      timeout_second: 300
+      priority: interactive
