@@ -1,8 +1,10 @@
 version: 2
 
 sources:
-  - name: supermarket
+  - name: erp
     database: joon-sandbox
-    schema: dbt_nguyendnb
+    schema: dbt_nguyendnb__data_lake
     tables:
-      - name: supermarket_sales
+      - name: purchase
+      - name: customer
+      - name: store

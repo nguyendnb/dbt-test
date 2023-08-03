@@ -1,0 +1,19 @@
+
+version: 2
+
+models:
+  - name: daily_store_performance
+    description: "This is model for tracking daily store performance"
+    columns:
+      - name: store_id
+        description: "This is column store id"
+        tests:
+          - not_null
+      - name: purchase_date
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - store_id
+            - purchase_date

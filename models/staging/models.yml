@@ -1,0 +1,28 @@
+
+version: 2
+
+models:
+  - name: purchase
+    description: "This is model a"
+    columns:
+      - name: id
+        description: "This is column id"
+        tests:
+          - unique
+          - not_null
+  - name: store
+    description: "This is model b"
+    columns:
+      - name: id
+        description: "This is column id"
+        tests:
+          - unique
+          - not_null
+  - name: customer
+    description: "This is model c"
+    columns:
+      - name: id
+        description: "This is column id"
+        tests:
+          - unique
+          - not_null

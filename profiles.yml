@@ -5,7 +5,7 @@ dbt_test:
       type: bigquery
       method: oauth
       project: joon-sandbox
-      dataset: dbt_nguyendnb
+      dataset: dbt_nguyendnb__data_mart
       threads: 8
       timeout_second: 300
       priority: interactive
