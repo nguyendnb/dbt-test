@@ -10,7 +10,7 @@ renamed as (
         cast(id as integer) as customer_id,
         cast(dob as timestamp) as date_of_birth,
         city as customer_city,
-        email,
+        email as customer_email,
         last_name,
         first_name
 
