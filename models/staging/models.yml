@@ -29,11 +29,3 @@ models:
         tests:
           - unique
           - not_null
-  - name: customer_2
-    description: "This is model c_2"
-    columns:
-      - name: customer_id
-        description: "This is column id"
-        tests:
-          - unique
-          - not_null
