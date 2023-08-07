@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.7.x"
+
+      # Dbt - Google BigQuery
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: 'google-github-actions/auth@v1.0.0'
+        with:
+          credentials_json: '${{ secrets.SA_KEY }}'
+
+      ## Install Python dependencies & Dbt packages
+      - name: Install dependencies
+        run: |
+          pip3 install -r requirements.txt
+          pip3 install sqlfluff-templater-dbt==2.1.1
+          dbt deps
+
+      ## Lint model files
+      - name: Lint with sqlfluff
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+          git diff ${{ github.event.pull_request.base.ref }} --name-only --diff-filter=d | egrep '^models/.*sql$$' | xargs -r sqlfluff lint --disable_progress_bar
+
+      - name: Run all models
+        if: steps.download_dbt_manifest.outcome != 'success'
+        run: dbt run --target dev
+
+      - name: Test all models
+        if: steps.download_dbt_manifest.outcome != 'success'
+        run: dbt test --target dev
