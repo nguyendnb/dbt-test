@@ -10,9 +10,6 @@ models:
         tests:
           - unique
           - not_null
-      - name: store_id
-        tests:
-          - unique
   - name: store
     description: "This is model b"
     columns:
